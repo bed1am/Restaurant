@@ -1,0 +1,15 @@
+﻿<Window x:Class="WpfApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Button x:Name="Client" Content="Клиент" HorizontalAlignment="Center" VerticalAlignment="Center" Height="50" Width="170" FontSize="24" Command="{Binding ClientAutCommand}" Click="Client_Click" Background="#FFC61D1D" BorderBrush="#FFC61D1D"/>
+        <Button x:Name="Manager" Content="Менеджер" HorizontalAlignment="Center" VerticalAlignment="Top" Height="50" Width="170" FontSize="24" Margin="0,263,0,0" Command="{Binding ManagerAutCommand}" Click="Manager_Click" Background="#FFC61D1D"/>
+        <Label Content="Приложение &quot;Ресторан&quot;" HorizontalAlignment="Center" Margin="0,47,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.32,0.289" FontSize="36"/>
+
+    </Grid>
+</Window>

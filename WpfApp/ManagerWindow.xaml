@@ -1,0 +1,102 @@
+﻿<Window x:Class="WpfApp.ManagerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp"
+        mc:Ignorable="d"
+        Title="ManagerWindow" Height="450" Width="800">
+    <Grid>
+        <Border BorderBrush="Black" BorderThickness="1">
+            <TabControl Grid.Column="0" TabStripPlacement="Left" BorderThickness="2" BorderBrush="Black" Margin="0,0,-1,-1">
+                <TabItem Header="Финансы" Width="122"  Background="#00000000">
+                    <Grid Background="#FFE5E5E5" Margin="0,-2,0,2">
+                        <Border BorderBrush="Black" BorderThickness="1" Margin="1,1,1,1">
+                            <TextBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Height="30" CaretBrush="Black" Margin="179,34,0,0"/>
+
+                        </Border>
+                        <Label Content="Выручка за месяц:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="132" RenderTransformOrigin="0.501,0.507" Margin="179,90,0,0"/>
+                        <TextBox HorizontalAlignment="Left" Margin="11,34,0,0" VerticalAlignment="Top" Width="120" Height="30" CaretBrush="Black"/>
+                        <Label Content="Прибыль за месяц:" HorizontalAlignment="Left" Margin="10,90,0,0" VerticalAlignment="Top" Width="132" RenderTransformOrigin="0.501,0.507"/>
+                        <Label Content="Прибыль за день:" HorizontalAlignment="Left" Margin="5,10,0,0" VerticalAlignment="Top" Width="132" RenderTransformOrigin="0.501,0.507"/>
+                        <TextBox HorizontalAlignment="Left" Margin="10,119,0,0" VerticalAlignment="Top" Width="120" Height="30" CaretBrush="Black"/>
+                        <Label Content="Выручка за день:" HorizontalAlignment="Left" Margin="179,10,0,0" VerticalAlignment="Top" Width="132" RenderTransformOrigin="0.501,0.507"/>
+                        <TextBox HorizontalAlignment="Left" Margin="179,119,0,0" VerticalAlignment="Top" Width="120" Height="30" CaretBrush="Black"/>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="История заказов">
+                    <Grid Background="#FFE5E5E5" Margin="0,-2,0,2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Border BorderBrush="Black" BorderThickness="1" Margin="1,1,1,1">
+                        </Border>
+                        <!--<Label Content="История заказов:" FontSize="16" Grid.Row="0"/>-->
+                        <Grid Grid.Row="0" Margin="0, 10, 0, 0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Content="История заказов:" FontSize="16" Grid.Row="0"/>
+                                <!--<Button Content="Добавить" Background="#FFD91616" Command="{Binding AddOrder}" Grid.Column="1" Margin="138,0,35,0"/>-->
+                            <Button Content="Редактировать"  Background="#FFD91616" Command="{Binding UpdateOrder}" Grid.Column="1"  />
+                            <Button Content="Удалить"  Background="#FFD91616"  Command="{Binding DeleteOrder}" Grid.Column="2" />
+                            </Grid>
+                        
+                        <DataGrid x:Name="PatientGridInfo" ItemsSource="{Binding AllOrders}" SelectedItem="{Binding SelectedOrder}" VerticalAlignment="Top" AutoGenerateColumns="False" CanUserAddRows="False" Grid.Row="1">
+                            <DataGrid.Columns>
+                                
+                                <DataGridTextColumn Header="Цена" Binding="{Binding summ}" Width="Auto"/>
+                                <DataGridTextColumn Header="Статус" Binding="{Binding order_status}" Width="Auto"/>
+                                <DataGridTextColumn Header="Стол" Binding="{Binding stol}" Width="Auto"/>
+                                <DataGridTextColumn Header="Дата" Binding="{Binding date, StringFormat=d}" Width="Auto"/>
+                                <DataGridTextColumn Header="Блюда" Binding="{Binding OrderedPhones}" IsReadOnly="True" Width="Auto"/>
+
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Столы">
+                    <Grid Background="#FFE5E5E5" Margin="0,-2,0,2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Border BorderBrush="Black" BorderThickness="1" Margin="1,1,1,1">
+                            <Grid Grid.Row="0" Margin="0, 10, 0, 0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Content="Столы:" FontSize="16" Grid.Row="0" Grid.Column="0"/>
+                                <Button Content="Добавить" Background="#FFD91616" Grid.Column="1" Margin="20,0,0,0" Command="{Binding AddStol}"/>
+                                <Button Content="Изменить"  Background="#FFD91616" Grid.Column="2"  Command="{Binding UpdateStol}"/>
+                                <Button Content="Удалить"  Background="#FFD91616" Grid.Column="3"  Command="{Binding DeleteStol}"/>
+                                <ComboBox Grid.Column="4" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="120" Margin="50,0,0,0"/>
+                                <Button Content="Выбрать"  Background="#FFD91616" Grid.Column="5" Margin="10,0,0,0" Command="{Binding StatusStol}"/>
+                            </Grid>
+                        </Border>
+                        
+                        <DataGrid ItemsSource="{Binding AllStol}" SelectedItem="{Binding SelectedStol}" VerticalAlignment="Top" AutoGenerateColumns="False" CanUserAddRows="False" Grid.Row="1">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Номер стола" Binding="{Binding id }" Width="Auto"/>
+                                <DataGridTextColumn Header="Статус" Binding="{Binding status}" Width="Auto"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+
+                    </Grid>
+                </TabItem>
+
+            </TabControl>
+        </Border>
+    </Grid>
+</Window>

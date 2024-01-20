@@ -1,0 +1,30 @@
+﻿<Window x:Class="WpfApp.AddOrder"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp"
+        mc:Ignorable="d"
+        Title="AddOrder" Height="194" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" MinWidth="148"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Label FontSize="16" FontWeight="Black" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Height="29" Width="58">Стол</Label>
+        <Label FontSize="16" FontWeight="Black" Grid.Column="0"  Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.ColumnSpan="2" Width="151" Height="30">Сумма</Label>
+        <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding SelectedName}"/>
+        <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding SelectedName}" Margin="0,0,0,1"/>
+        <Label FontSize="16" FontWeight="Black" Grid.Column="0"  Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.ColumnSpan="2" Width="151" Height="30">Статус заказа</Label>
+        <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding SelectedName}" Margin="0,0,0,1"/>
+        <Button Grid.Column="1" Grid.Row="6" Margin="10,20,436,-38" Content="Подтвердить" Command="{Binding SubmitCommand}" Background="#ba66ff" Click="Button_Click"/>
+    </Grid>
+</Window>
