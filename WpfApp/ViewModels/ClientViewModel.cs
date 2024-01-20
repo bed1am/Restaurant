@@ -75,9 +75,51 @@ namespace WpfApp.ViewModels
             get { return _orderDto; }
             set { _orderDto = value; OnPropertyChanged(); }
         }
-        public ObservableCollection<dishDto> orderedDishes { get; set; }
+        public ObservableCollection<dishDto> OrderedDishes;
+        public ObservableCollection<dishDto> orderedDishes { get 
+            {
+                return OrderedDishes;
+            } 
+            set 
+            {
+                OrderedDishes = value;
+            } 
+        }
         public ObservableCollection<dishDto> AllDishes { get; set; }
         public ObservableCollection<deliveryDto> AllDeliveries { get; set; }
+        private ObservableCollection<dishDto> _dish;
+        public ObservableCollection<dishDto> Dishes
+        {
+            get { return _dish; }
+            set { _dish = value; OnPropertyChanged(); }
+        }
+
+        private dishDto _dishSelected;
+        public dishDto dishSelected
+        {
+            get { return _dishSelected; }
+            set { _dishSelected = value; OnPropertyChanged(); }
+        }
+        private RelayComand addInCart;
+        public RelayComand AddInCart
+        {
+            get
+            {
+                return addInCart ??
+                  (addInCart = new RelayComand(obj =>
+                  {
+                      AddInCartExecute(obj);
+                  }));
+            }
+        }
+        public void AddInCartExecute(object obj)
+        {
+            if (dishSelected != null)
+            {
+                dishstringService.PutToBusketDishString(dishSelected, 1);
+                orderedDishes.Add(dishSelected);
+            }
+        }
 
         public ClientViewModel( IOrderService orderService, IDishStringService dishstringService, IdishService dishService, IReportService reportService)
         {
@@ -91,6 +133,7 @@ namespace WpfApp.ViewModels
             IdUser = 1;
             number = 0;
 
+            Dishes = new ObservableCollection<dishDto>(dishService.GetAllDishes());
             CurrentView = new CatalogViewModel(IdUser, orderService, dishstringService, dishService, reportService);
             AllDishes = new ObservableCollection<dishDto>();
             AllDeliveries = new ObservableCollection<deliveryDto>();

@@ -19,41 +19,7 @@ namespace WpfApp.ViewModels
         IReportService reportService;
         IDishStringService dishstringService;
 
-        private ObservableCollection<dishDto> _dish;
-        public ObservableCollection<dishDto> Dishes
-        {
-            get { return _dish; }
-            set { _dish = value; OnPropertyChanged(); }
-        }
-
-        private dishDto _dishSelected;
-        public dishDto dishSelected
-        {
-            get { return _dishSelected; }
-            set { _dishSelected = value; OnPropertyChanged(); }
-        }
-
-        private int _idUser;
-        public int IdUser
-        {
-            get { return _idUser; }
-            set { _idUser = value; OnPropertyChanged(); }
-        }
-        private int _number;
-        public int number
-        {
-            get { return _number; }
-            set { _number = value; OnPropertyChanged(); }
-
-        }
-        public ICommand AddInCart { get; set; }
-        public void AddInCartExecute(object obj)
-        {
-            if (dishSelected != null)
-            {
-                dishstringService.PutToBusketDishString(dishSelected, number);
-            }
-        }
+        
 
 
         public CatalogViewModel(int IdUserInput, IOrderService orderService, IDishStringService dishstringService, IdishService dishService, IReportService reportService)
@@ -62,10 +28,10 @@ namespace WpfApp.ViewModels
             this.orderService = orderService;
             this.dishstringService = dishstringService;
             this.reportService = reportService;
-            IdUser = IdUserInput;
+            //IdUser = IdUserInput;
 
-            AddInCart = new RelayComand(AddInCartExecute);
-            Dishes = new ObservableCollection<dishDto>(dishService.GetAllDishes());
+            //AddInCart = new RelayComand(AddInCartExecute);
+            //Dishes = new ObservableCollection<dishDto>(dishService.GetAllDishes());
 
         }
     }

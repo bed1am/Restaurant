@@ -23,10 +23,5 @@ namespace WpfApp
         {
             InitializeComponent();
         }
-
-        private void ProductList_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
     }
 }
