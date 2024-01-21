@@ -11,7 +11,7 @@ namespace Interfaces.Services
 {
     public interface IOrderService
     {
-        bool MakeOrder();
+        bool MakeOrder(int stolid);
         List<orderDto> GetAllOrders();
         void UpdateOrder(orderDto p);
         orderDto GetOrder(int Id);

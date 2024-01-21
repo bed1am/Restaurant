@@ -1,6 +1,7 @@
 ﻿using BLL.DTO;
 using BLL.Services;
 using Interfaces.Services;
+using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -64,7 +65,10 @@ namespace WpfApp.ViewModels
                 return makeOrder ??
                   (makeOrder = new RelayComand(obj =>
                   {
-                      orderService.MakeOrder();
+
+                      //var Text = (string)obj;
+                      var Text = (Int32.Parse((string)obj));
+                      orderService.MakeOrder(Text);
                   }));
             }
         }

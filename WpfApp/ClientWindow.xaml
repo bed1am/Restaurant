@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="WpfApp.ClientWindow"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:DTO="clr-namespace:BLL.DTO;assembly=Interfaces" x:Class="WpfApp.ClientWindow"
         mc:Ignorable="d"
         Title="ClientWindow" Height="450" Width="800">
     <Grid>
@@ -23,7 +23,7 @@
         VerticalAlignment="Center"
         HorizontalAlignment="Left">
 
-                                <Button Command="{Binding AddInCart}">Добавить в корзину</Button>
+                                <Button Command="{Binding AddInCart}" Content="Добавить в корзину"/>
 
                             </StackPanel>
 
@@ -63,7 +63,7 @@
                                                 <Grid Grid.Row="0">
                                                     <TextBlock Text="{Binding name}"
                                Foreground="#DBDBDB"
-                               FontSize="14"></TextBlock>
+                               FontSize="14"/>
                                                 </Grid>
                                                 <Grid Grid.Row="1" Grid.Column="0" Width="auto">
                                                     <Grid.ColumnDefinitions>
@@ -71,10 +71,10 @@
                                                         <ColumnDefinition/>
                                                         <ColumnDefinition/>
                                                     </Grid.ColumnDefinitions>
-                                                    <TextBlock Foreground="#DBDBDB" Grid.Column="0">Время приготовления:</TextBlock>
+                                                    <TextBlock Foreground="#DBDBDB" Grid.Column="0"><Run Text="Время приготовления:"/></TextBlock>
                                                     <TextBlock Text="{Binding time_cook}" Grid.Column="1" Margin="0,0,10,10"
-                            Foreground="#DBDBDB"></TextBlock>
-                                                    <TextBlock Foreground="#DBDBDB" Grid.Column="2">мин.</TextBlock>
+                            Foreground="#DBDBDB"/>
+                                                    <TextBlock Foreground="#DBDBDB" Grid.Column="2"><Run Text="мин."/></TextBlock>
                                                 </Grid>
                                                 <Grid Grid.Row="1" Grid.Column="1" Width="auto">
                                                     <Grid.ColumnDefinitions>
@@ -82,10 +82,10 @@
                                                         <ColumnDefinition/>
                                                         <ColumnDefinition/>
                                                     </Grid.ColumnDefinitions>
-                                                    <TextBlock Foreground="#DBDBDB" Grid.Column="0" Width="auto" >Вес:</TextBlock>
+                                                    <TextBlock Foreground="#DBDBDB" Grid.Column="0" Width="auto" ><Run Text="Вес:"/></TextBlock>
                                                     <TextBlock Text="{Binding weight}" Grid.Column="1" Width="auto"
-                               Foreground="#DBDBDB"></TextBlock>
-                                                    <TextBlock Foreground="#DBDBDB" Grid.Column="2" Width="auto">г.</TextBlock>
+                               Foreground="#DBDBDB"/>
+                                                    <TextBlock Foreground="#DBDBDB" Grid.Column="2" Width="auto"><Run Text="г."/></TextBlock>
                                                 </Grid>
                                                 <Grid Grid.Row="1" Grid.Column="2" Width="auto">
                                                     <Grid.ColumnDefinitions>
@@ -93,10 +93,10 @@
                                                         <ColumnDefinition/>
                                                         <ColumnDefinition/>
                                                     </Grid.ColumnDefinitions>
-                                                    <TextBlock Foreground="#DBDBDB" Grid.Column="0" Width="auto" >Цена:</TextBlock>
+                                                    <TextBlock Foreground="#DBDBDB" Grid.Column="0" Width="auto" ><Run Text="Цена:"/></TextBlock>
                                                     <TextBlock Text="{Binding price}" Grid.Column="1" Width="auto"
-                            Foreground="#DBDBDB"></TextBlock>
-                                                    <TextBlock Foreground="#DBDBDB" Grid.Column="2" Width="auto" >руб.</TextBlock>
+                            Foreground="#DBDBDB"/>
+                                                    <TextBlock Foreground="#DBDBDB" Grid.Column="2" Width="auto" ><Run Text="руб."/></TextBlock>
                                                 </Grid>
                                             </Grid>
 
@@ -124,18 +124,29 @@
                                 <ColumnDefinition Width="auto"/>
                                 <ColumnDefinition Width="auto"/>
                             </Grid.ColumnDefinitions>
-                            <Button Content="Подтвердить заказ" Background="#ba66ff" Grid.Column="1" Command="{Binding MakeOrder}" Margin="210,0,-193,0" />
-                            <Button Content="Оформить доставку"  Background="#ba66ff" Grid.Column="1" Margin="377,0,-367,0" Command="{Binding DeliveryAutCommand}" Click="Button_Click"/>
-                            <Button Content="Создать заказ"  Background="#ba66ff" Grid.Column="1" Margin="10,0,0,0" Command="{Binding CreateOrder}" />
+                            <Button Content="Подтвердить заказ" Background="#ba66ff" Command="{Binding MakeOrder}" Margin="5,-6,143,6" Grid.ColumnSpan="2">
+                                <Button.CommandParameter>
+                                    <Binding Path="Text" ElementName="txtStol"></Binding>
+                                    </Button.CommandParameter>
+                            </Button>
+                            <Button Content="Оформить доставку"  Background="#ba66ff" Grid.Column="1" Margin="41,-6,-31,6" Command="{Binding DeliveryAutCommand}" />
+                            <TextBox HorizontalAlignment="Left" Margin="11,34,0,0" VerticalAlignment="Top" Width="120" Height="30" CaretBrush="Black"/>
                         </Grid>
+                        <Label Content="Введите номер стола:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="130" RenderTransformOrigin="0.501,0.507" Margin="433,10,0,0" Height="110" Grid.RowSpan="3">
+                        </Label>
+
+                        <TextBox x:Name="txtStol" HorizontalAlignment="Left" Margin="568,10,0,0" VerticalAlignment="Top" Width="129" Height="27" CaretBrush="Black" Text="1"/>
+
                         <Label Content="Заказанные блюда:" FontSize="16" Grid.Row="1"/>
                         <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
                             <StackPanel Orientation="Vertical" VerticalAlignment="Top">
-                                <ItemsControl x:Name="PatientGridInfo" ItemsSource="{Binding orderedDishes}">
+                                <ItemsControl x:Name="PatientGridInfo" ItemsSource="{Binding orderedDishes}" Height="358">
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
                                             <TextBlock Text="{Binding name}" Width="Auto"/>
+
                                         </DataTemplate>
+
                                     </ItemsControl.ItemTemplate>
                                 </ItemsControl>
                             </StackPanel>

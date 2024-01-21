@@ -21,7 +21,7 @@ namespace BLL.Services
             this.idhService = idhService;
         }
         Random rnd = new Random();
-        public bool MakeOrder()
+        public bool MakeOrder(int stolid)
         {
             List<KeyValuePair<int, dishDto>> list = idhService.GetBusketDishString(); 
             int sum = 0;
@@ -30,13 +30,15 @@ namespace BLL.Services
             {
                 sum += (int)orderedDish.Value.price;
             }
+
             //применяем скидку
             sum = (int)new discount(0.1).GetDiscountedPrice(sum);
 
             order order = new order
             {
-                id = (int)db.dishes.Local.ToBindingList().Max(x => x.id) + 1+ (rnd.Next()%100),
+                id = (int)db.dishes.Local.ToBindingList().Max(x => x.id) + 1 + (rnd.Next() % 100),
                 order_status = status,
+                id_stol = stolid,
                 date = DateTime.Now,
                 summ = sum,
 
@@ -75,6 +77,13 @@ namespace BLL.Services
         public void UpdateOrder(orderDto p)
         {
             order ph = db.orders.Find(p.id);
+            if (p.id_stol != null)
+            {
+                ph.stol = db.stols.Find(p.id_stol);
+            }
+            else { 
+                ph.stol = null;
+            }
             ph.id_stol = p.id_stol;
             ph.summ = p.summ;
             ph.order_status = p.order_status;

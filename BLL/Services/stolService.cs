@@ -25,9 +25,6 @@ namespace BLL.Services
                 id = stolDto.id,
                 number_stol = stolDto.number_stol,
                 status = stolDto.status,
-                
-
-
             };
             db.stols.Add(stol);
             if (db.SaveChanges() > 0)

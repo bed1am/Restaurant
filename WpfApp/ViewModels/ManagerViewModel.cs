@@ -1,13 +1,8 @@
 ﻿using BLL.DTO;
-using BLL.Services;
 using Interfaces.DTO;
 using Interfaces.Services;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using WpfApp.Utils;
@@ -110,7 +105,7 @@ namespace WpfApp.ViewModels
             }
         }
 
-        public ManagerViewModel( IOrderService orderService, IdishService dishService, IstolService stolService, IReportService reportService)
+        public ManagerViewModel(IOrderService orderService, IdishService dishService, IstolService stolService, IReportService reportService)
         {
             this.dishService = dishService;
             this.orderService = orderService;

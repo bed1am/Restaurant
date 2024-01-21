@@ -41,7 +41,7 @@
                             </Grid.ColumnDefinitions>
                             <Label Content="История заказов:" FontSize="16" Grid.Row="0"/>
                                 <!--<Button Content="Добавить" Background="#FFD91616" Command="{Binding AddOrder}" Grid.Column="1" Margin="138,0,35,0"/>-->
-                            <Button Content="Редактировать"  Background="#FFD91616" Command="{Binding UpdateOrder}" Grid.Column="1"  />
+                            <Button Content="Редактировать"  Background="#FFD91616" Command="{Binding UpdateOrder}" Grid.Column="1" />
                             <Button Content="Удалить"  Background="#FFD91616"  Command="{Binding DeleteOrder}" Grid.Column="2" />
                             </Grid>
                         
@@ -50,9 +50,9 @@
                                 
                                 <DataGridTextColumn Header="Цена" Binding="{Binding summ}" Width="Auto"/>
                                 <DataGridTextColumn Header="Статус" Binding="{Binding order_status}" Width="Auto"/>
-                                <DataGridTextColumn Header="Стол" Binding="{Binding stol}" Width="Auto"/>
+                                <DataGridTextColumn Header="Стол" Binding="{Binding id_stol}" Width="Auto"/>
                                 <DataGridTextColumn Header="Дата" Binding="{Binding date, StringFormat=d}" Width="Auto"/>
-                                <DataGridTextColumn Header="Блюда" Binding="{Binding OrderedPhones}" IsReadOnly="True" Width="Auto"/>
+                                <DataGridTextColumn Header="Блюда" Binding="{Binding OrderedDishes}" IsReadOnly="True" Width="Auto"/>
 
                             </DataGrid.Columns>
                         </DataGrid>

@@ -28,6 +28,7 @@ namespace WpfApp
         IOrderService orderService;
         IReportService reportService;
         IDishStringService dishstringService;
+    
         public ClientWindow(/*IOrderService orderService, IdishService dishService, IReportService reportService*//*IOrderService orderService*/)
         {
             InitializeComponent();
@@ -46,14 +47,6 @@ namespace WpfApp
 
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-
-        }
+       
     }
 }
